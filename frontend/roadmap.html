@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalGuider | Roadmap</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav.css">
+
+
+    <script src="js/guard.js"></script>
+    <script>
+      requireAuth();
+      localStorage.removeItem("obBoarding-to-roadmap"); // removes the obBoarding-to-roadmap
+    </script>
+
+</head>
+  <body>
+    <!-- navbar start -->
+    <div class="navbar">
+        <div class="logo">🎯 GoalGuider</div>
+        <div class="links">
+            <!-- <a href="index.html">Home</a> -->
+            <a href="roadmap.html">Roadmap</a>
+            <a href="tasks.html">Tasks</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        <div class="hamburger" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="links">
+            <!-- <a href="index.html" onclick="closeSidebar()">Home</a> -->
+            <a href="roadmap.html" onclick="closeSidebar()">Roadmap</a>
+            <a href="tasks.html" onclick="closeSidebar()">Tasks</a>
+            <a href="profile.html" onclick="closeSidebar()">Profile</a>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    <!-- navbar end -->
+
+    <div class="container">
+      <h2>Your Career Roadmap</h2>
+      <div id="roadmap"></div>
+    </div>
+
+    <!-- footer start -->
+    <div id="footer"></div>
+    <script>
+      fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+    <!-- footer end -->
+
+
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/roadmap_view.js"></script>
+
+    <!-- navbar script-->
+    <script> 
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+    </script>
+
+  </body>
+</html>

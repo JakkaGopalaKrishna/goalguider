@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - GoalGuider</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Paste the navbar HTML here -->
+    <div class="navbar">
+        <div class="logo">🎯 GoalGuider</div>
+        <div class="links">
+            <!-- <a href="index.html">Home</a> -->
+            <a href="roadmap.html">Roadmap</a>
+            <a href="tasks.html">Tasks</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        <div class="hamburger" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="links">
+            <!-- <a href="index.html" onclick="closeSidebar()">Home</a> -->
+            <a href="roadmap.html" onclick="closeSidebar()">Roadmap</a>
+            <a href="tasks.html" onclick="closeSidebar()">Tasks</a>
+            <a href="profile.html" onclick="closeSidebar()">Profile</a>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+    <!-- Paste the JavaScript here -->
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+    </script>
+    
+</body>
+</html>

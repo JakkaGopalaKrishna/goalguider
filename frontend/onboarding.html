@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalGuider | Career Details</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <script src="js/guard.js"></script>
+    <script>
+      requireAuth();
+    </script>
+    <script>
+        const obBoarding_to_roadmap = localStorage.getItem("roadmap generater err");
+        if (obBoarding_to_roadmap){ setTimeout(() => {
+           window.location.href = 'roadmap.html';
+        }, 5000);}
+    </script>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">🎯 GoalGuider</div>
+  </div>
+  <div class="container_box">
+    <h2 style="text-align: center; margin-bottom: 30px;">📋 Tell Us About Your Goals</h2>
+
+    <div class="form-group">
+      <label for="status">What's your current status?</label>
+      <textarea id="status" placeholder="e.g., Recent computer science graduate, currently learning Python" style="width: 100%; height: 100px; padding: 12px; border-radius: 6px; border: 2px solid #e5e7eb; font-family: inherit; resize: vertical;"></textarea>
+      <div class="error-message"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="goal">What's your career goal?</label>
+      <textarea id="goal" placeholder="e.g., Become a full-stack web developer within 6 months" style=" width: 100%; height: 100px; padding: 12px; border-radius: 6px; border: 2px solid #e5e7eb; font-family: inherit; resize: vertical;"></textarea>
+      <div class="error-message"></div>
+    </div>
+
+    <button id="textchange_button" onclick="textchange(); generateRoadmap();" style=" padding: 14px; font-size: 16px;">✨ Generate My Roadmap</button>
+    
+  </div>
+
+  <!-- footer start -->
+  <div id="footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+<!-- footer end -->
+<script>
+  function textchange() {
+    const generateBtn=document.getElementById('textchange_button');
+    generateBtn.disabled = true;
+    generateBtn.innerText = "Generating roadmap...";
+  }
+</script>
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/roadmap.js"></script>
+
+</body>
+</html>
