@@ -1,0 +1,53 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalGuider | Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav.css">
+  </head>
+<body>
+  <div class="navbar">
+    <div class="logo">🎯 GoalGuider</div>
+    <div class="links"><a href="index.html">Home</a></div>
+  </div>
+<div class="container_box">
+  <h2 style="text-align: center; margin-bottom: 30px;">🎯 Welcome Back</h2>
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input id="username" type="text" placeholder="Enter your username" autocomplete="username">
+    <div class="error-message"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password">
+    <div class="error-message"></div>
+  </div>
+
+  <button onclick="login()" style="width: 100%; margin-bottom: 20px;">Login</button>
+  <p style="text-align: center; color: #666;">
+    Don't have an account?
+    <a href="signup.html" style="color: #4f46e5; font-weight: 600; text-decoration: none;">Sign Up</a>
+  </p>
+
+</div>
+  <!-- footer start -->
+  <div id="footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+  <!-- footer end -->
+
+
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+</html>

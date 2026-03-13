@@ -1,0 +1,252 @@
+/* Navbar styles for desktop */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.links {
+    display: flex;
+    list-style: none;
+}
+
+.links a {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s;
+}
+
+.links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Hamburger menu for mobile */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding-top: 60px; /* Space for navbar height */
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar .links {
+    flex-direction: column;
+    padding: 0;
+}
+
+.sidebar .links a {
+    position: relative;
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar .links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.sidebar .links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Overlay for mobile */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 998;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .navbar .links {
+display: none; /* Hide desktop links */
+    }
+
+    .hamburger {
+display: flex; /* Show hamburger */
+    }
+
+    .sidebar {
+display: block; /* Show sidebar */
+    }
+}
+
+/* Content adjustment */
+.content {
+    margin-top: 80px; /* Adjust for fixed navbar */
+    padding: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer Styles */
+.footer {
+  background-color: #2C3E50; /* Dark blue-gray for a professional look */
+  color: #FFFFFF; /* White text for contrast */
+  padding: 2rem 0; /* Vertical padding for breathing room */
+  font-family: 'Roboto', sans-serif; /* Clean, readable font */
+  font-size: 0.9rem; /* Slightly smaller text for footer */
+  border-top: 1px solid #34495E; /* Subtle top border for separation */
+}
+
+.footer h5, .footer h6 {
+  color: #ECF0F1; /* Light gray for headings */
+  margin-bottom: 1rem;
+}
+
+.footer a {
+  color: #BDC3C7; /* Light gray for links */
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth hover effect */
+  
+}
+
+.footer a:hover {
+  color: #3498DB; /* Blue accent on hover for interactivity */
+  text-decoration: underline; /* Underline on hover for clarity */
+}
+
+.footer .list-unstyled li {
+  margin-bottom: 0.5rem; /* Spacing between list items */
+}
+
+.footer .social-icons a {
+  margin-right: 1rem; /* Space between social icons */
+  font-size: 1.2rem; /* Slightly larger icons */
+}
+
+.footer .social-icons a:hover {
+  color: #3498DB; /* Match link hover color */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .footer .row {
+    text-align: center; /* Center content on mobile */
+  }
+  .footer .col-md-3 {
+    margin-bottom: 1.5rem; /* Add space between stacked sections */
+  }
+}
+/* containe Styles (for centering and responsive width) */
+.containe {
+  width: 100%;
+  max-width: 1200px; /* Max width for large screens */
+  margin: 0 auto; /* Center horizontally */
+  padding-left: 15px; /* Left padding for content spacing */
+  padding-right: 15px; /* Right padding for content spacing */
+  display: flex;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 576px) {
+  .containe {
+    max-width: 540px; /* Small devices (tablets) */
+  }
+}
+
+@media (min-width: 768px) {
+  .containe {
+    max-width: 720px; /* Medium devices (small laptops) */
+  }
+}
+
+@media (min-width: 992px) {
+  .containe {
+    max-width: 960px; /* Large devices (desktops) */
+  }
+}
+
+@media (min-width: 1200px) {
+  .containe {
+    max-width: 1140px; /* Extra large devices */
+  }
+}

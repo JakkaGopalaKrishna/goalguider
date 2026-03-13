@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoalGuider | Tasks & Streak</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/task.css" />
+
+  <script src="js/guard.js"></script>
+  <script>requireAuth();</script>
+
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">🎯 GoalGuider</div>
+  <div class="links">
+    <a href="roadmap.html">Roadmap</a>
+    <a href="tasks.html">Tasks</a>
+    <a href="profile.html">Profile</a>
+  </div>
+  <div class="hamburger" onclick="toggleSidebar()">
+    <div></div><div></div><div></div>
+  </div>
+</div>
+
+<div class="sidebar" id="sidebar">
+  <div class="links">
+    <a href="roadmap.html" onclick="closeSidebar()">Roadmap</a>
+    <a href="tasks.html" onclick="closeSidebar()">Tasks</a>
+    <a href="profile.html" onclick="closeSidebar()">Profile</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- CONTENT -->
+<div class="container">
+  <h2>Streak</h2>
+  <div id="streak" class="streak"></div>
+
+  <h2>Daily Tasks</h2>
+
+  <!-- PRESENT -->
+  <section class="task-section open top">
+    <div class="task-header" role="button" tabindex="0" aria-expanded="true"
+         onClick="toggleSection(this)">
+      <span>📍 Present Task</span>
+      <span class="chev">🔺</span>
+    </div>
+    <div class="task-content" id="presentTask"></div>
+  </section>
+
+  <!-- UPCOMING -->
+  <section class="task-section open">
+    <div class="task-header" role="button" tabindex="0" aria-expanded="true"
+         onClick="toggleSection(this)">
+      <span>🗓️ Upcoming Tasks</span>
+      <span class="chev">🔺</span>
+    </div>
+    <div class="task-content" id="upcomingTasks"></div>
+    <div class="more-btn" id="loadMore" role="button" tabindex="0"></div>
+  </section>
+
+  <!-- COMPLETED -->
+  <section class="task-section">
+    <div class="task-header" role="button" tabindex="0" aria-expanded="false"
+         onClick="toggleSection(this)">
+      <span>✅ Completed Tasks</span>
+      <span class="chev">🔺</span>
+    </div>
+    <div class="task-content" id="completedTasks"></div>
+  </section>
+
+  <!-- ORIGINAL TASK BUFFER -->
+  <div id="tasks" style="display:none;"></div>
+
+</div>
+
+<!-- footer start -->
+    <div id="footer"></div>
+    <script>
+      fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+<!-- footer end -->
+
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/tasks.js"></script>
+
+<script>
+  let upcomingIndex = 0;
+  const UPCOMING_BATCH = 5;
+  let pendingTasksCache = [];
+
+  function toggleSection(header) {
+    const section = header.closest('.task-section');
+    const isOpen = section.classList.toggle('open');
+    header.setAttribute('aria-expanded', isOpen);
+  }
+
+  function distributeTasks() {
+    const allTasks = Array.from(document.querySelectorAll("#tasks > div"));
+    if (!allTasks.length) return;
+
+    const present = document.getElementById("presentTask");
+    const upcoming = document.getElementById("upcomingTasks");
+    const completed = document.getElementById("completedTasks");
+
+    present.innerHTML = "";
+    upcoming.innerHTML = "";
+    completed.innerHTML = "";
+
+    pendingTasksCache = [];
+
+    allTasks.forEach(task => {
+      if (task.classList.contains("done") || task.classList.contains("completed")) {
+        completed.appendChild(task);
+      } else {
+        pendingTasksCache.push(task);
+      }
+    });
+
+    if (pendingTasksCache.length) {
+      present.appendChild(pendingTasksCache[0]);
+      upcomingIndex = 1;
+    }
+
+    loadMoreUpcoming();
+  }
+
+  function loadMoreUpcoming() {
+    const upcoming = document.getElementById("upcomingTasks");
+    let count = 0;
+
+    while (upcomingIndex < pendingTasksCache.length && count < UPCOMING_BATCH) {
+      upcoming.appendChild(pendingTasksCache[upcomingIndex++]);
+      count++;
+    }
+
+    if (upcomingIndex >= pendingTasksCache.length) {
+      document.getElementById("loadMore").style.display = "none";
+    }
+  }
+
+  document.getElementById("loadMore").onclick = loadMoreUpcoming;
+
+  const observer = new MutationObserver(() => {
+    if (document.querySelectorAll("#tasks > div").length) {
+      distributeTasks();
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(document.getElementById("tasks"), { childList: true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalGuider | Signup</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav.css">
+  </head>
+<body>
+  <div class="navbar">
+    <div class="logo">🎯 GoalGuider</div>
+    <div class="links"><a href="index.html">Home</a></div>
+  </div>
+<div class="container_box">
+  <h2 style="text-align: center; margin-bottom: 30px;">Create Account</h2>
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input id="username" type="text" placeholder="Enter your username" autocomplete="username">
+    <div class="error-message"></div>
+  </div>
+
+    <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="Enter your Email" autocomplete="current-email">
+    <div class="error-message"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password">
+    <div class="error-message"></div>
+  </div>
+
+  <button id="signupBtn" style="width: 100%; margin-bottom: 20px;">Create Account</button>
+
+  <p style="text-align: center; color: #666;">
+    Already have an account?
+    <a href="login.html" style="color: #4f46e5; font-weight: 600; text-decoration: none;">Login</a>
+  </p>
+</div>
+
+<script>
+/* 🔒 ABSOLUTE ISOLATION: no shared JS */
+const API_BASE = "http://127.0.0.1:8000/api";
+
+document.getElementById("signupBtn").addEventListener("click", () => {
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  fetch(`${API_BASE}/auth/register/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, email, password })
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Signup failed");
+    return res.json(); // ✅ READ ONCE
+  })
+  .then(() => {
+    window.location.assign("login.html");
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Signup failed");
+  });
+});
+</script>
+  <!-- footer start -->
+  <div id="footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+  <!-- footer end -->
+</body>
+</html>

@@ -1,0 +1,132 @@
+.top{
+    margin-top: 0px !important;
+    border-radius: 0 0 8px 8px !important;
+}
+.task-header{
+    color: #4f46e5 !important;
+    font-weight: bold !important;
+    /* border-bottom: 2px solid #4f46e5 !important; */
+    background-color: #f0f0f0 !important;
+}
+section.task-section{
+  border: 2px solid #4f46e5 !important;
+}
+h2{
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+  color: white !important;
+  padding: 10px !important;
+  border-radius: 8px 8px 0 0 !important;
+  border-left: 5px solid #7c3aed !important;
+  margin-bottom: 0 !important;
+
+}
+.task {
+  /* border: 1px solid #7c3aed !important;
+  border-left: 5px solid #7c3aed !important; */
+  box-shadow: 2px 2px 2px 1px #bfbebe !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* <style> */
+    .task-section {
+      margin: 20px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .task-header {
+      background: transparent;
+      padding: 12px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+
+    .task-content {
+      padding: 12px 16px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 260ms ease, opacity 220ms ease;
+      opacity: 0;
+    }
+
+    .task-section.open .task-content {
+      max-height: 1200px;
+      opacity: 1;
+    }
+
+    .task-header .chev {
+      display: inline-block;
+      transition: transform 200ms ease;
+      font-size: 28px;
+      color: #4f46e5 !important;
+    }
+
+    .task-section.open .task-header .chev {
+      transform: rotate(180deg);
+    }
+
+    .more-btn {
+      margin: 10px 16px;
+      cursor: pointer;
+      color: #00ffcc;
+      font-weight: 700;
+      background: transparent;
+      border: none;
+    }
+
+    /* 🔒 UPCOMING TASKS: replace checkbox with lock */
+    #upcomingTasks label {
+      position: relative;
+      padding-left: 28px;
+      cursor: default;
+    }
+
+    #upcomingTasks input[type="checkbox"] {
+      display: none;
+    }
+
+    #upcomingTasks label::before {
+      content: "🔒";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+    /* 🔒 Lock icon for EACH upcoming task item */
+#upcomingTasks > div {
+  position: relative;
+  padding-left: 32px;
+  opacity: 0.7; /* optional: locked feel */
+  pointer-events: none; /* optional: prevent interaction */
+}
+
+#upcomingTasks > div::before {
+  content: "🔒";
+  position: absolute;
+  left: 0;
+  top: 36%;
+  font-size: 18px;
+}
+
+  /* </style> */
